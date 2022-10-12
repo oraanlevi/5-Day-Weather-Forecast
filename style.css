@@ -1,5 +1,52 @@
 
-
+*{
+  box-sizing: border-box;
+}
 .container {
   text-align: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+
+
+body {
+  color:rgb(131, 66, 66);
 }
+  h1 {
+
+  background-color: rgb(52, 40, 104);
+  padding: 50px;
+}
+
+.row  {
+  margin: 60px;
+  padding: 70px;
+  box-sizing: 30px;
+  
+}
+
+#currentCityInfo {
+  color: black;
+}
+
+form {
+  text-align: left;
+}
+
+
+#currentCity{
+  border: solid;
+  border-width: 5px;
+  border-color: black;
+  padding: 5px;
+  margin: 5px;
+  text-align: left 60px;
+}
+
+#forcast {
+  padding: 5px;
+  margin: 5px;
+}
+
