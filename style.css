@@ -11,8 +11,12 @@
   }
 
 
+header {
+  color:rgb(255, 255, 255);
+  text-align: center;
+}
 body {
-  color:rgb(131, 66, 66);
+  color: black;
 }
   h1 {
 
@@ -21,9 +25,10 @@ body {
 }
 
 .row  {
-  margin: 60px;
-  padding: 70px;
+  margin: 5x;
+  padding: 5px;
   box-sizing: 30px;
+  text-align: left;
   
 }
 
@@ -42,11 +47,13 @@ form {
   border-color: black;
   padding: 5px;
   margin: 5px;
-  text-align: left 60px;
 }
 
 #forcast {
   padding: 5px;
-  margin: 5px;
+  margin: 5px
 }
 
+#card {
+  background-color: blueviolet;
+}

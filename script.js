@@ -60,37 +60,56 @@ form.addEventListener("submit", event => {
   let lat = ''
   let lon = ''
 
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${inputVal}&appid=${weatherApiKey}&units=metric`;
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${inputVal}&appid=${weatherApiKey}&units=imperial`;
 
 
-  // const forecastUrl = `api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${weatherApiKey}`
-  // fetch(forecastUrl)
-  // .then(response => response.json())
-  // .then(data => {
-  //   console.log(data)
-  // })
-  // .catch(() => {
-  //   msg.textContent = "Please search for a valid city 😩";
-  // });
-  console.log(inputVal)
-  // console.log(event)
+  
+  
+  
   fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        console.log(data)
-        msg.textContent = data.name
-        lat =  data.coord.lat
-        lon =  data.coord.lon
-        console.log(lat, lon);
-        displayHumidity(data);
-      })
-//      .catch(() => {
-//        msg.textContent = "Please search for a valid city 😩";
-//      });
+  .then(response => response.json())
+  .then(data => {
+    console.log(data)
+    msg.textContent = data.name
+    lat =  data.coord.lat
+    lon =  data.coord.lon
+    console.log(lat, lon);
+    displayWeather(data);
+    
+    const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${weatherApiKey}&units=imperial`
+    fetch(forecastUrl)
+    .then(response => response.json())
+    .then(data => {
+      forecast(data)
+    })
+  })
+  
 
 })
 
-function displayHumidity(data) {
+function forecast(data) {
+  const dayOneDate = document.querySelector('.day-one-date');
+  const dayOneTemp = document.querySelector('.day-one-temperature');
+  const dayOneWind = document.querySelector('.day-one-wind');
+  const dayOneHumid = document.querySelector('.day-one-humidity');
+
+
+  console.log(data.list)
+  dayOneTemp.innerHTML = `Temp: ${data.list[0].main.temp}°F`
+  dayOneDate.innerHTML =`Date: ${data.list[0].dt_txt}`
+  dayOneWind.innerHTML = `Wind: ${data.list[0].wind.deg}MPH`
+  dayOneHumid.innerHTML = `Humidity: ${data.list[0].main.humidity}%`
+
+ 
+ 
+  const dayTwoWeather = document.querySelector('.day-two-wind');
+  //dayTwoWeather.innerHTML = `Date: ${data.list[0].dt_txt}`
+dayTwoWeather.innerHTML = `Temp: ${data.list[8].main.temp}`
+
+}
+
+
+ function displayWeather(data) {
   console.log(data);
   const humidity = data.main.humidity;
   const temp = data.main.temp;
@@ -100,10 +119,9 @@ function displayHumidity(data) {
   const currentTemp = document.querySelector('#currentTemp');
   const currentWind = document.querySelector('#currentWind');
   console.log(currentTemp)
-  currentTemp.innerHTML = temp
-  currentWind.innerHTML = wind
-  currentHumid.innerHTML = humid
-
+  currentTemp.innerHTML = `Temp: ${temp}°F`
+  currentWind.innerHTML = `Wind: ${wind} MPH`
+  currentHumid.innerHTML = `Humidity: ${humid}%`
   console.log(humidity)
 
 
