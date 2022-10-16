@@ -30,31 +30,39 @@ form.addEventListener("submit", event => {
     .then(data => {
       forecast(data)
 
-    
-      var formSubmitHandler = function (event) {
-        event.preventDefault();
         if (data) {
-          searchHistoryArray.push(data);
+          searchHistoryArray.push(inputVal);
           localStorage.setItem("weatherSearch", JSON.stringify(searchHistoryArray));
-          var searchHistoryEl = document.createElement('button');
-          searchHistoryEl.className = "btn";
-          searchHistoryEl.setAttribute("data-city", data)
-          searchHistoryEl.innerHTML = data;
-          historyButtonsEl.appendChild(searchHistoryEl);
           historyCardEl.removeAttribute("style")
           cityNameInputEl.value = "";
+          loadHistory();
       }
       else {
           alert("Please enter a City name");
       }
       
-      }
       
-        var loadHistory = function () {
-        searchArray = JSON.parse(localStorage.getItem("weatherSearch"));
+      var clearHistory = function (event) {
+        localStorage.removeItem("weatherSearch");
+        historyCardEl.setAttribute("style", "display: none");
+      }      
+          
+      
+    })
+  })
+  var cityFormEl = document.querySelector("#city-form");
+var cityNameInputEl = document.querySelector("#cityname");
+var currentWeatherEl = document.querySelector('#current-weather');
+var weatherStatusEl = document.querySelector('#weather-status');
+var searchEl = document.querySelector('#search');
+var historyButtonsEl = document.querySelector("#history-buttons")
+var historyCardEl = document.querySelector("#history")
+var searchHistoryArray = []
+
+var loadHistory = function () {
+        var searchArray = JSON.parse(localStorage.getItem("weatherSearch"));
       
         if (searchArray) {
-            searchHistoryArray = JSON.parse(localStorage.getItem("weatherSearch"));
             for (let i = 0; i < searchArray.length; i++) {
                 var searchHistoryEl = document.createElement('button');
                 searchHistoryEl.className = "btn";
@@ -66,30 +74,7 @@ form.addEventListener("submit", event => {
       
         }
       }
-      
-      // Search weather using search history buttons
-      var buttonClickHandler = function (event) {
-        var data = event.target.getAttribute("data-city");
-        if (data) {
-            getWeatherInfo(data);
-        }
-      }
-      
-      // Clear Search History
-      var clearHistory = function (event) {
-        localStorage.removeItem("weatherSearch");
-        historyCardEl.setAttribute("style", "display: none");
-      }
-      //var cityFormEl = function () {
-      cityFormEl.addEventListener("submit", formSubmitHandler);
-      historyButtonsEl.addEventListener("click", buttonClickHandler);
-      
-      loadHistory();
-      
-      
-    })
-  })
-  
+   
   function displayWeather(data) {
         console.log(data);
         const humidity = data.main.humidity;
@@ -109,14 +94,6 @@ form.addEventListener("submit", event => {
       
       }
 })
-var cityFormEl = document.querySelector("#city-form");
-var cityNameInputEl = document.querySelector("#cityname");
-var currentWeatherEl = document.querySelector('#current-weather');
-var weatherStatusEl = document.querySelector('#weather-status');
-var searchEl = document.querySelector('#search');
-var historyButtonsEl = document.querySelector("#history-buttons")
-var historyCardEl = document.querySelector("#history")
-var searchHistoryArray = []
 
 
 function forecast(data) {
