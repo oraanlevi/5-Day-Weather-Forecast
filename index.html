@@ -18,32 +18,44 @@
         <h1>Weather Dashboard</h1>
 
     </header>
+</head>
+<main class="flex-row justify-space-between">
+    <div class="flex-row justify-space-between col-12">
+      <div class="col-12 col-md-8">
 
-    <div class="container">
-        <form>
-            <input type="text" placeholder="Search for a city" autofocus>
-            <button type="submit">SUBMIT</button>
+        <div class="card">
+          <h3 class="card-header">Search a City</h3>
+          <form id="city-form" class="card-body">
+            <label class="form-lable">City Name</label>
+            <input name="cityname" id="cityname" type="text" autofocus="true" class="form-input" />
+            <button type="submit" class="button">Submit</button>
           </form>
-          </div><body>
-            
-          </body>
-        <div class ="row">
-            <div class = "container col-3 searchContainer">
-                <div class="container">
-                    <div class="input-group mb-3">
-                        
- <button type="button" 
- class="btn btn-sucess"
-  id="searchBtn"><i class= fa fa-search></i></button>
-                   </div>
+        </div>
 
-                </div>
-                
-
-                </div>
+          </div>
+          <div class="col-12 col-md-8">
+            <div class="card hidden" id="current-weather-card">
+              <div class="card-body" id="current-weather">
+    
+              </div>
             </div>
-            <div class="col-sm">   
-            <div id="searchHistory" class="container">
+          </div>
+        </div>
+    
+    </div>
+    <div class="flex-row justify-space-between col-12">
+      <div class="col-12 col-md-4" id="search">
+        <div class="card" id="history">
+          <h3 class="card-header text">Search history
+
+          </h3>
+          <div class="card-body" id="history-buttons">
+          </div>
+
+        </div>
+      </div>
+
+    
 
                 <div class=" row hide" id="currentCity">  
                     <span id="msg"></span>
@@ -53,14 +65,13 @@
                     <p id="currentWind">Wind</p>
 
                 </div>
-                <div class="row-blue">
-                    <div class="row">
+                <div class="row">
                             <div class="5forecast">
                                 <h5>5-Day Forecast:</h5>
                             </div>
                         </div>
                     </div>
-                    <div class="rows">
+                    <div class="row align-items-start-">
                             <div class="col">
                                 <div class="card forecast-day">
                                     <div class="card-body bg-primary">
@@ -87,6 +98,7 @@
                             <div class="col">
                                 <div class="card forecast">
                                     <div class="card-body bg-primary">
+                                        <p class="day-three-date"></p>
                                         <p class="day-three-wind"></p>
                                         <p class="day-three-temperature"></p>
                                         <p class="day-three-humidity"></p>
@@ -97,6 +109,7 @@
                             <div class="col">
                                 <div class="card forecast">
                                     <div class="card-body bg-primary">
+                                        <p class="day-four-date"></p>
                                         <p class="day-four-wind"></p>
                                         <p class="day-four-temperature"></p>
                                         <p class="day-four-humidity"></p>
@@ -107,6 +120,7 @@
                             <div class="col">
                                 <div class="card forecast">
                                     <div class="card-body bg-primary">
+                                        <p class="day-five-date"></p>
                                         <p class="day-five-wind"></p>
                                         <p class="day-five-temperature"></p>
                                         <p class="day-five-humidity"></p>
